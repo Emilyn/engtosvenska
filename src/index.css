@@ -1,0 +1,36 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: #080b14;
+  color: #e8eeff;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Safe area insets for notched phones */
+.app-root {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #0e1220; }
+::-webkit-scrollbar-thumb { background: #252d48; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #3a4460; }
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Button reset */
+button { -webkit-appearance: none; appearance: none; }
+
+/* Selection color */
+::selection { background: #c8a96e33; color: #e8eeff; }
