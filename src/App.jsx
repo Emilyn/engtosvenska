@@ -45,13 +45,29 @@ function getColorClasses(rawColor) {
 }
 
 // ─── Speech ───────────────────────────────────────────────────────────────────
-function speak(text) {
+let cachedSwedishVoice = null;
+function loadSwedishVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  // prefer sv-SE over generic sv, prefer local/native voices over network
+  cachedSwedishVoice =
+    voices.find(v => v.lang === "sv-SE" && v.localService) ||
+    voices.find(v => v.lang === "sv-SE") ||
+    voices.find(v => v.lang.startsWith("sv") && v.localService) ||
+    voices.find(v => v.lang.startsWith("sv")) ||
+    null;
+}
+if (typeof window !== "undefined" && window.speechSynthesis) {
+  loadSwedishVoice();
+  window.speechSynthesis.addEventListener("voiceschanged", loadSwedishVoice);
+}
+
+function speak(text, { slow = false } = {}) {
   if (!window.speechSynthesis) return;
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = "sv-SE"; u.rate = 0.82;
-  const sv = window.speechSynthesis.getVoices().find(v => v.lang.startsWith("sv"));
-  if (sv) u.voice = sv;
+  u.lang = "sv-SE";
+  u.rate = slow ? 0.4 : 0.82;
+  if (cachedSwedishVoice) u.voice = cachedSwedishVoice;
   window.speechSynthesis.speak(u);
 }
 
@@ -66,19 +82,35 @@ function Tag({ children, colorClass = C.gold, bgClass = C.goldBg, borderClass = 
 
 function SpeakBtn({ word, small }) {
   const [on, setOn] = useState(false);
+  const [slowOn, setSlowOn] = useState(false);
+  const btnBase = cn(
+    "shrink-0 rounded-lg cursor-pointer text-[13px] transition-all inline-flex items-center justify-center min-w-[32px] border",
+    small ? "px-2.5 py-1" : "px-3.5 py-1.5",
+  );
   return (
-    <button
-      onClick={e => { e.stopPropagation(); setOn(true); speak(word); setTimeout(() => setOn(false), 1400); }}
-      className={cn(
-        "shrink-0 rounded-lg cursor-pointer text-[13px] transition-all inline-flex items-center justify-center min-w-[32px] border",
-        small ? "px-2.5 py-1" : "px-3.5 py-1.5",
-        on
-          ? "bg-amber-600 border-amber-600 text-white"
-          : "bg-transparent border-border text-muted-foreground hover:border-amber-700/50 hover:text-amber-400/80"
-      )}
-    >
-      {on ? "▶" : "♪"}
-    </button>
+    <span className="inline-flex gap-1">
+      <button
+        onClick={e => { e.stopPropagation(); setOn(true); speak(word); setTimeout(() => setOn(false), 1400); }}
+        className={cn(btnBase,
+          on
+            ? "bg-amber-600 border-amber-600 text-white"
+            : "bg-transparent border-border text-muted-foreground hover:border-amber-700/50 hover:text-amber-400/80"
+        )}
+      >
+        {on ? "▶" : "♪"}
+      </button>
+      <button
+        title="Play slowly"
+        onClick={e => { e.stopPropagation(); setSlowOn(true); speak(word, { slow: true }); setTimeout(() => setSlowOn(false), 2400); }}
+        className={cn(btnBase,
+          slowOn
+            ? "bg-sky-600 border-sky-600 text-white"
+            : "bg-transparent border-border text-muted-foreground hover:border-sky-600/50 hover:text-sky-400/80"
+        )}
+      >
+        {slowOn ? "▶" : "🐢"}
+      </button>
+    </span>
   );
 }
 
