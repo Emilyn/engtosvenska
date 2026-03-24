@@ -1110,10 +1110,14 @@ export default function App() {
   const [grammarTab, setGrammarTab] = useState("nouns");
   const [contentTab, setContentTab] = useState("phrases");
   const [activeVowel, setActiveVowel] = useState(null);
+  const [bannerDismissed, setBannerDismissed] = useState(false);
   const { isMobile, isTablet } = useBreakpoint();
+  const { canInstall, install, installed } = usePWAInstall();
 
   const GComp = GRAMMAR_TABS.find(t=>t.id===grammarTab)?.C;
   const CComp = CONTENT_TABS.find(t=>t.id===contentTab)?.C;
+
+  const showBanner = canInstall && !installed && !bannerDismissed;
 
   function SubTabBar({ tabs, active, setActive }) {
     return (
@@ -1132,6 +1136,42 @@ export default function App() {
   return (
     <div style={{minHeight:"100vh",background:C.bg,backgroundImage:`radial-gradient(ellipse at 20% 50%, #0e152a 0%, transparent 55%), radial-gradient(ellipse at 80% 10%, #0b1422 0%, transparent 50%)`,fontFamily:"'DM Sans',sans-serif",paddingBottom:60}}>
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital@0;1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+
+      {/* PWA Install Banner */}
+      {showBanner && (
+        <div style={{
+          position:"fixed", bottom:0, left:0, right:0, zIndex:9999,
+          background:"#141928",
+          borderTop:`1px solid ${C.gold}44`,
+          padding:isMobile?"14px 16px":"14px 24px",
+          display:"flex", alignItems:"center", gap:12,
+          boxShadow:"0 -8px 32px #000a",
+          paddingBottom:`calc(14px + env(safe-area-inset-bottom))`,
+        }}>
+          <div style={{
+            width:42, height:42, borderRadius:10, flexShrink:0,
+            background:"#0e1220", border:`1px solid ${C.gold}44`,
+            display:"flex", alignItems:"center", justifyContent:"center",
+            fontFamily:"'Playfair Display',serif", fontSize:22, color:C.gold, fontWeight:700,
+          }}>Sv</div>
+          <div style={{flex:1, minWidth:0}}>
+            <div style={{color:C.text, fontSize:13, fontWeight:600, marginBottom:1}}>Install Svenska</div>
+            <div style={{color:C.muted, fontSize:11, fontFamily:"'DM Mono',monospace"}}>Add to home screen · works offline</div>
+          </div>
+          <button onClick={install} style={{
+            padding:"9px 18px", borderRadius:10,
+            background:C.gold, border:"none",
+            color:"#080b14", fontFamily:"'DM Mono',monospace",
+            fontSize:12, fontWeight:700, cursor:"pointer",
+            letterSpacing:".05em", whiteSpace:"nowrap", flexShrink:0,
+          }}>Install</button>
+          <button onClick={()=>setBannerDismissed(true)} style={{
+            background:"transparent", border:"none",
+            color:C.muted, cursor:"pointer", fontSize:18,
+            padding:"4px 6px", lineHeight:1, flexShrink:0,
+          }}>×</button>
+        </div>
+      )}
 
       {/* Header */}
       <div style={{textAlign:"center",padding:isMobile?"24px 16px 16px":"36px 20px 20px"}}>
