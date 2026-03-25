@@ -1,0 +1,24 @@
+{
+  "nums1to20": [
+    ["noll","0"],["ett / en","1"],["två","2"],["tre","3"],["fyra","4"],
+    ["fem","5"],["sex","6"],["sju","7"],["åtta","8"],["nio","9"],
+    ["tio","10"],["elva","11"],["tolv","12"],["tretton","13"],["fjorton","14"],
+    ["femton","15"],["sexton","16"],["sjutton","17"],["arton","18"],["nitton","19"],
+    ["tjugo","20"]
+  ],
+  "tens": [
+    ["trettio","30"],["fyrtio","40"],["femtio","50"],["sextio","60"],
+    ["sjuttio","70"],["åttio","80"],["nittio","90"],["hundra","100"],
+    ["tusen","1,000"],["en miljon","1,000,000"]
+  ],
+  "ordinals": [
+    ["första","1st"],["andra","2nd"],["tredje","3rd"],["fjärde","4th"],["femte","5th"],
+    ["sjätte","6th"],["sjunde","7th"],["åttonde","8th"],["nionde","9th"],["tionde","10th"]
+  ],
+  "phrases": [
+    ["Klockan är tre",          "It's three o'clock"],
+    ["Den femte maj",           "The fifth of May"],
+    ["Jag är tjugotre år",      "I am twenty-three years old"],
+    ["Det kostar tjugo kronor", "It costs twenty kronor"]
+  ]
+}

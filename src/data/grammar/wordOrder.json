@@ -1,0 +1,43 @@
+{
+  "v2Examples": [
+    {
+      "label": "Normal (Subject first)",
+      "parts": [
+        {"t": "Jag",    "r": "subject",    "colorKey": "teal",      "bg": "tealBg"},
+        {"t": "äter",   "r": "verb (2nd)", "colorKey": "gold",      "bg": "goldBg"},
+        {"t": "äpplet", "r": "object",     "colorKey": "foreground","bg": "muted"}
+      ],
+      "en": "I eat the apple"
+    },
+    {
+      "label": "Inverted (Adverb first)",
+      "parts": [
+        {"t": "Idag",   "r": "adverb",     "colorKey": "lavender",  "bg": "lavenderBg"},
+        {"t": "äter",   "r": "verb (2nd)", "colorKey": "gold",      "bg": "goldBg"},
+        {"t": "jag",    "r": "subject",    "colorKey": "teal",      "bg": "tealBg"},
+        {"t": "äpplet", "r": "object",     "colorKey": "foreground","bg": "muted"}
+      ],
+      "en": "Today I eat the apple"
+    },
+    {
+      "label": "Inverted (Object first)",
+      "parts": [
+        {"t": "Äpplet", "r": "object",     "colorKey": "rose",      "bg": "roseBg"},
+        {"t": "äter",   "r": "verb (2nd)", "colorKey": "gold",      "bg": "goldBg"},
+        {"t": "jag",    "r": "subject",    "colorKey": "teal",      "bg": "tealBg"}
+      ],
+      "en": "The apple — I eat (it)"
+    }
+  ],
+  "negation": [
+    ["Jag förstår inte.",             "I don't understand.",       "after verb"],
+    ["Han kommer inte idag.",         "He's not coming today.",    "after verb"],
+    ["Jag vet att hon inte kommer.",  "I know she's not coming.",  "before verb (sub-clause)"]
+  ],
+  "questions": [
+    ["Talar du svenska?",  "Do you speak Swedish?",    "verb first"],
+    ["Vad heter du?",      "What is your name?",       "vad + verb + subject"],
+    ["Var bor du?",        "Where do you live?",       "var + verb + subject"],
+    ["Hur mår du?",        "How are you?",             "hur + verb + subject"]
+  ]
+}

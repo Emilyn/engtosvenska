@@ -5,15 +5,17 @@ import { RuleBox } from "@/components/shared/RuleBox";
 import { Tag } from "@/components/shared/Tag";
 import { Grid2 } from "@/components/shared/Grid2";
 import { SpeakBtn } from "@/components/shared/SpeakBtn";
+import verbsData from "@/data/grammar/verbs.json";
 
-const groups = [
-  {n:1,pattern:"-ar",inf:"prata (to talk)",present:"pratar",past:"pratade",sup:"pratat",tc:C.teal,bg:C.tealBg,bc:C.tealBorder},
-  {n:2,pattern:"-er",inf:"köra (to drive)",present:"kör",past:"körde",sup:"kört",tc:C.gold,bg:C.goldBg,bc:C.goldBorder},
-  {n:3,pattern:"-r",inf:"bo (to live)",present:"bor",past:"bodde",sup:"bott",tc:C.sky,bg:C.skyBg,bc:C.skyBorder},
-  {n:4,pattern:"irreg",inf:"vara (to be)",present:"är",past:"var",sup:"varit",tc:C.lavender,bg:C.lavenderBg,bc:C.lavenderBorder},
-];
+const colorMap: Record<string, { tc: string; bg: string; bc: string }> = {
+  teal:     { tc: C.teal,     bg: C.tealBg,     bc: C.tealBorder },
+  gold:     { tc: C.gold,     bg: C.goldBg,     bc: C.goldBorder },
+  sky:      { tc: C.sky,      bg: C.skyBg,      bc: C.skyBorder },
+  lavender: { tc: C.lavender, bg: C.lavenderBg, bc: C.lavenderBorder },
+};
 
-const pronouns: [string, string][] = [["jag","I"],["du","you (sing.)"],["han/hon","he/she"],["vi","we"],["ni","you (pl.)"],["de","they"]];
+const groups = verbsData.groups.map(g => ({ ...g, ...colorMap[g.colorKey] }));
+const pronouns = verbsData.pronouns as [string, string][];
 
 export function Verbs() {
   return (
@@ -53,7 +55,7 @@ export function Verbs() {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse min-w-[380px]">
             <thead><tr>{["Meaning","Infinitive","Present","Past","Supine"].map(h => <th key={h} className="text-muted-foreground font-mono text-[10px] uppercase tracking-wider px-2 py-1.5 text-left border-b border-border">{h}</th>)}</tr></thead>
-            <tbody>{[["to be","vara","är","var","varit"],["to have","ha","har","hade","haft"],["to go","gå","går","gick","gått"],["to come","komma","kommer","kom","kommit"],["to see","se","ser","såg","sett"],["to say","säga","säger","sa(de)","sagt"],["to get","få","får","fick","fått"],["to know","veta","vet","visste","vetat"]].map(([en, inf, pres, past, sup]) => (
+            <tbody>{(verbsData.irregulars as [string,string,string,string,string][]).map(([en, inf, pres, past, sup]) => (
               <tr key={inf} className="border-b border-border">
                 <td className="text-muted-foreground text-xs px-2 py-2">{en}</td>
                 {([inf, pres, past, sup] as string[]).map((f, i) => <td key={i} className="px-2 py-2"><div className="flex gap-1 items-center"><SpeakBtn word={f} small /><span className={cn("font-serif text-sm", [null, C.teal, C.gold, C.lavender][i] ?? "")}>{f}</span></div></td>)}

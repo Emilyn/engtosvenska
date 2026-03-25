@@ -6,9 +6,11 @@ import { RuleBox } from "@/components/shared/RuleBox";
 import { Row } from "@/components/shared/Row";
 import { SpeakBtn } from "@/components/shared/SpeakBtn";
 
-const nums1to20: [string, string][] = [["noll","0"],["ett / en","1"],["två","2"],["tre","3"],["fyra","4"],["fem","5"],["sex","6"],["sju","7"],["åtta","8"],["nio","9"],["tio","10"],["elva","11"],["tolv","12"],["tretton","13"],["fjorton","14"],["femton","15"],["sexton","16"],["sjutton","17"],["arton","18"],["nitton","19"],["tjugo","20"]];
-const tens: [string, string][] = [["trettio","30"],["fyrtio","40"],["femtio","50"],["sextio","60"],["sjuttio","70"],["åttio","80"],["nittio","90"],["hundra","100"],["tusen","1,000"],["en miljon","1,000,000"]];
-const ordinals: [string, string][] = [["första","1st"],["andra","2nd"],["tredje","3rd"],["fjärde","4th"],["femte","5th"],["sjätte","6th"],["sjunde","7th"],["åttonde","8th"],["nionde","9th"],["tionde","10th"]];
+import numbersData from "@/data/content/numbers.json";
+
+const nums1to20 = numbersData.nums1to20 as [string, string][];
+const tens = numbersData.tens as [string, string][];
+const ordinals = numbersData.ordinals as [string, string][];
 
 export function Numbers() {
   const { isMobile } = useBreakpoint();
@@ -45,7 +47,7 @@ export function Numbers() {
         {ordinals.map(([sv, en]) => <Row key={sv} sv={sv} en={en} colorClass={C.lavender} />)}
       </Section>
       <Section title="Useful Number Phrases">
-        {[["Klockan är tre","It's three o'clock"],["Den femte maj","The fifth of May"],["Jag är tjugotre år","I am twenty-three years old"],["Det kostar tjugo kronor","It costs twenty kronor"]].map(([sv, en]) => <Row key={sv} sv={sv} en={en} />)}
+        {(numbersData.phrases as [string, string][]).map(([sv, en]) => <Row key={sv} sv={sv} en={en} />)}
       </Section>
     </div>
   );

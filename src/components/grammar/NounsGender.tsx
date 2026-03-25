@@ -9,12 +9,8 @@ import { Grid2 } from "@/components/shared/Grid2";
 import { Button } from "@/components/ui/button";
 import { SpeakBtn } from "@/components/shared/SpeakBtn";
 
-const quizWords = [
-  {word:"bil",en:"car",g:"en"},{word:"hus",en:"house",g:"ett"},
-  {word:"bok",en:"book",g:"en"},{word:"barn",en:"child",g:"ett"},
-  {word:"hand",en:"hand",g:"en"},{word:"äpple",en:"apple",g:"ett"},
-  {word:"stol",en:"chair",g:"en"},{word:"vatten",en:"water",g:"ett"},
-];
+import quizWordsData from "@/data/grammar/nounsGender.json";
+const quizWords = quizWordsData;
 
 export function NounsGender() {
   const [qi, setQi] = useState(0);

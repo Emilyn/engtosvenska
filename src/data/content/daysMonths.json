@@ -1,0 +1,31 @@
+{
+  "days": [
+    ["måndag", "Monday",    "mån"],
+    ["tisdag", "Tuesday",   "tis"],
+    ["onsdag", "Wednesday", "ons"],
+    ["torsdag","Thursday",  "tor"],
+    ["fredag", "Friday",    "fre"],
+    ["lördag", "Saturday",  "lör"],
+    ["söndag", "Sunday",    "sön"]
+  ],
+  "months": [
+    ["januari",  "January"],  ["februari","February"],
+    ["mars",     "March"],    ["april",   "April"],
+    ["maj",      "May"],      ["juni",    "June"],
+    ["juli",     "July"],     ["augusti", "August"],
+    ["september","September"],["oktober", "October"],
+    ["november", "November"], ["december","December"]
+  ],
+  "timePhrases": [
+    ["idag",         "today"],
+    ["igår",         "yesterday"],
+    ["imorgon",      "tomorrow"],
+    ["i veckan",     "this week"],
+    ["förra veckan", "last week"],
+    ["nästa vecka",  "next week"],
+    ["i år",         "this year"],
+    ["förra året",   "last year"],
+    ["på måndag",    "on Monday"],
+    ["varje dag",    "every day"]
+  ]
+}

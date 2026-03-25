@@ -5,14 +5,17 @@ import { RuleBox } from "@/components/shared/RuleBox";
 import { Row } from "@/components/shared/Row";
 import { Tag } from "@/components/shared/Tag";
 import { Grid2 } from "@/components/shared/Grid2";
+import groupsData from "@/data/grammar/plurals.json";
 
-const groups = [
-  {n:1,rule:"add -or",tc:C.teal,bg:C.tealBg,bc:C.tealBorder,ex:[["en flicka → flickor","girl → girls"],["en blomma → blommor","flower → flowers"],["en gata → gator","street → streets"]]},
-  {n:2,rule:"add -ar",tc:C.gold,bg:C.goldBg,bc:C.goldBorder,ex:[["en bil → bilar","car → cars"],["en dag → dagar","day → days"],["en hand → händer*","hand → hands"]]},
-  {n:3,rule:"add -er",tc:C.sky,bg:C.skyBg,bc:C.skyBorder,ex:[["en natt → nätter*","night → nights"],["en stad → städer*","city → cities"],["en tid → tider","time → times"]]},
-  {n:4,rule:"add -n",tc:C.lavender,bg:C.lavenderBg,bc:C.lavenderBorder,ex:[["ett äpple → äpplen","apple → apples"],["ett rike → riken","realm → realms"],["ett hjärta → hjärtan","heart → hearts"]]},
-  {n:5,rule:"no change",tc:C.rose,bg:C.roseBg,bc:C.roseBorder,ex:[["ett hus → hus","house → houses"],["ett år → år","year → years"],["en lärare → lärare","teacher → teachers"]]},
-];
+const colorMap: Record<string, { tc: string; bg: string; bc: string }> = {
+  teal:     { tc: C.teal,     bg: C.tealBg,     bc: C.tealBorder },
+  gold:     { tc: C.gold,     bg: C.goldBg,     bc: C.goldBorder },
+  sky:      { tc: C.sky,      bg: C.skyBg,      bc: C.skyBorder },
+  lavender: { tc: C.lavender, bg: C.lavenderBg, bc: C.lavenderBorder },
+  rose:     { tc: C.rose,     bg: C.roseBg,     bc: C.roseBorder },
+};
+
+const groups = groupsData.map(g => ({ ...g, ...colorMap[g.colorKey] }));
 
 export function Plurals() {
   return (

@@ -1,0 +1,10 @@
+[
+  {"word": "bil",    "en": "car",    "g": "en"},
+  {"word": "hus",    "en": "house",  "g": "ett"},
+  {"word": "bok",    "en": "book",   "g": "en"},
+  {"word": "barn",   "en": "child",  "g": "ett"},
+  {"word": "hand",   "en": "hand",   "g": "en"},
+  {"word": "äpple",  "en": "apple",  "g": "ett"},
+  {"word": "stol",   "en": "chair",  "g": "en"},
+  {"word": "vatten", "en": "water",  "g": "ett"}
+]

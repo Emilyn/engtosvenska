@@ -13,14 +13,5 @@ export interface VowelData {
   long: VowelVariant;
 }
 
-export const VOWELS: VowelData[] = [
-  { letter:"A", colorKey:"gold",     short:{ ipa:"/a/",  hint:"like 'a' in 'father' — but shorter",       word:"katt", meaning:"cat",         pron:"katt"  }, long:{ ipa:"/aː/", hint:"like 'a' in 'spa' — held longer",            word:"dag",  meaning:"day",         pron:"daag"  } },
-  { letter:"E", colorKey:"teal",     short:{ ipa:"/ɛ/",  hint:"like 'e' in 'bed'",                         word:"vett", meaning:"sense",        pron:"vett"  }, long:{ ipa:"/eː/", hint:"like 'ay' in 'say' — pure, no glide",        word:"vet",  meaning:"knows",       pron:"veet"  } },
-  { letter:"I", colorKey:"sky",      short:{ ipa:"/ɪ/",  hint:"like 'i' in 'bit'",                         word:"vill", meaning:"wants",        pron:"vill"  }, long:{ ipa:"/iː/", hint:"like 'ee' in 'see' — held longer",           word:"vi",   meaning:"we",           pron:"vee"   } },
-  { letter:"O", colorKey:"gold",     short:{ ipa:"/ɔ/",  hint:"like 'o' in 'hot' — rounded lips",          word:"bott", meaning:"lived",        pron:"bott"  }, long:{ ipa:"/uː/", hint:"like 'oo' in 'moon' — very rounded",         word:"bo",   meaning:"to live",     pron:"boo"   } },
-  { letter:"U", colorKey:"sage",     short:{ ipa:"/ɵ/",  hint:"round lips like 'oo', tongue says 'ih'",    word:"full", meaning:"full",         pron:"full"  }, long:{ ipa:"/ʉː/", hint:"like French 'u' — lips rounded, tongue fwd", word:"hus",  meaning:"house",       pron:"hyoos" } },
-  { letter:"Y", colorKey:"lavender", short:{ ipa:"/ʏ/",  hint:"round lips, say 'ih' — German ü short",     word:"nytt", meaning:"new (neut.)",  pron:"nytt"  }, long:{ ipa:"/yː/", hint:"like French 'u' — lips rounded, high",       word:"ny",   meaning:"new",         pron:"nyy"   } },
-  { letter:"Å", colorKey:"sage",     short:{ ipa:"/ɔ/",  hint:"like 'o' in 'more' — rounded",              word:"håll", meaning:"hold",         pron:"holl"  }, long:{ ipa:"/oː/", hint:"like 'oa' in 'boat' — pure, no glide",       word:"år",   meaning:"year",        pron:"oar"   } },
-  { letter:"Ä", colorKey:"gold",     short:{ ipa:"/ɛ/",  hint:"like 'e' in 'bed' — mouth more open",       word:"ätt",  meaning:"family line",  pron:"ett"   }, long:{ ipa:"/ɛː/", hint:"like 'ai' in 'air' — held, mouth open",      word:"äta",  meaning:"to eat",      pron:"eeta"  } },
-  { letter:"Ö", colorKey:"sky",      short:{ ipa:"/œ/",  hint:"like 'ir' in 'bird' — rounded lips",        word:"öst",  meaning:"east",         pron:"urst"  }, long:{ ipa:"/øː/", hint:"like German 'ö' — lips fwd, rounded",        word:"öra",  meaning:"ear",         pron:"eura"  } },
-];
+import vowelsData from "./vowels.json";
+export const VOWELS: VowelData[] = vowelsData as VowelData[];

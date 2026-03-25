@@ -1,0 +1,7 @@
+[
+  { "n": 1, "rule": "add -or", "colorKey": "teal",     "ex": [["en flicka → flickor","girl → girls"],    ["en blomma → blommor","flower → flowers"], ["en gata → gator","street → streets"]] },
+  { "n": 2, "rule": "add -ar", "colorKey": "gold",     "ex": [["en bil → bilar","car → cars"],           ["en dag → dagar","day → days"],            ["en hand → händer*","hand → hands"]] },
+  { "n": 3, "rule": "add -er", "colorKey": "sky",      "ex": [["en natt → nätter*","night → nights"],    ["en stad → städer*","city → cities"],      ["en tid → tider","time → times"]] },
+  { "n": 4, "rule": "add -n",  "colorKey": "lavender", "ex": [["ett äpple → äpplen","apple → apples"],   ["ett rike → riken","realm → realms"],      ["ett hjärta → hjärtan","heart → hearts"]] },
+  { "n": 5, "rule": "no change","colorKey": "rose",    "ex": [["ett hus → hus","house → houses"],        ["ett år → år","year → years"],             ["en lärare → lärare","teacher → teachers"]] }
+]

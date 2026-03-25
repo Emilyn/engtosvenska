@@ -70,8 +70,7 @@ export default function App() {
     <div className="min-h-screen bg-background font-sans">
       {/* Top nav bar */}
       <header
-        className="sticky top-0 z-30 bg-background/80 backdrop-blur border-b border-border px-4 h-14 flex items-center justify-between"
-        style={{ paddingTop: "env(safe-area-inset-top)" }}
+        className="sticky top-0 z-30 bg-background/80 backdrop-blur border-b border-border px-4 flex items-end justify-between pb-3 pt-[max(env(safe-area-inset-top),0.875rem)]"
       >
         {/* Logo + current section */}
         <div className="flex items-center gap-2.5">

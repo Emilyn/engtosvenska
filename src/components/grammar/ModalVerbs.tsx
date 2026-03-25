@@ -5,23 +5,18 @@ import { Section } from "@/components/shared/Section";
 import { RuleBox } from "@/components/shared/RuleBox";
 import { Row } from "@/components/shared/Row";
 import { Tag } from "@/components/shared/Tag";
+import modalsData from "@/data/grammar/modalVerbs.json";
 
-const modals = [
-  { sv:"kan",    en:"can / be able to",        past:"kunde",   note:"ability or possibility",          tc:C.teal,    bg:C.tealBg,    bc:C.tealBorder,
-    examples:[["Jag kan simma","I can swim"],["Kan du hjälpa mig?","Can you help me?"],["Det kan vara sant","It might be true"]] },
-  { sv:"ska",    en:"shall / will / going to",  past:"skulle",  note:"future plans, intention",         tc:C.gold,    bg:C.goldBg,    bc:C.goldBorder,
-    examples:[["Jag ska resa imorgon","I'm going to travel tomorrow"],["Ska vi gå?","Shall we go?"],["Det ska bli bra","It will be fine"]] },
-  { sv:"vill",   en:"want to",                  past:"ville",   note:"desire or wish",                  tc:C.lavender,bg:C.lavenderBg,bc:C.lavenderBorder,
-    examples:[["Jag vill lära mig svenska","I want to learn Swedish"],["Vill du ha kaffe?","Do you want coffee?"],["Jag ville stanna","I wanted to stay"]] },
-  { sv:"måste",  en:"must / have to",           past:"måste",   note:"necessity — same in past!",       tc:C.rose,    bg:C.roseBg,    bc:C.roseBorder,
-    examples:[["Jag måste gå nu","I have to go now"],["Du måste äta","You must eat"],["Vi måste ta bussen","We have to take the bus"]] },
-  { sv:"får",    en:"may / get to / is allowed",past:"fick",    note:"permission or acquisition",       tc:C.sky,     bg:C.skyBg,     bc:C.skyBorder,
-    examples:[["Får jag fråga?","May I ask?"],["Jag fick en present","I got a gift"],["Du får inte röka här","You're not allowed to smoke here"]] },
-  { sv:"borde",  en:"should / ought to",        past:"borde",   note:"recommendation — same in past!",  tc:C.sage,    bg:C.sageBg,    bc:C.sageBorder,
-    examples:[["Du borde vila","You should rest"],["Jag borde studera mer","I ought to study more"],["Vi borde fråga","We should ask"]] },
-  { sv:"behöver",en:"need to",                  past:"behövde", note:"necessity / need",                tc:C.gold,    bg:C.goldBg,    bc:C.goldBorder,
-    examples:[["Jag behöver hjälp","I need help"],["Du behöver inte komma","You don't need to come"],["Vi behövde vänta","We needed to wait"]] },
-];
+const colorMap: Record<string, { tc: string; bg: string; bc: string }> = {
+  teal:     { tc: C.teal,     bg: C.tealBg,     bc: C.tealBorder },
+  gold:     { tc: C.gold,     bg: C.goldBg,     bc: C.goldBorder },
+  lavender: { tc: C.lavender, bg: C.lavenderBg, bc: C.lavenderBorder },
+  rose:     { tc: C.rose,     bg: C.roseBg,     bc: C.roseBorder },
+  sky:      { tc: C.sky,      bg: C.skyBg,      bc: C.skyBorder },
+  sage:     { tc: C.sage,     bg: C.sageBg,     bc: C.sageBorder },
+};
+
+const modals = modalsData.map(m => ({ ...m, ...colorMap[m.colorKey] }));
 
 export function ModalVerbs() {
   const { isMobile } = useBreakpoint();

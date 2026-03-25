@@ -1,0 +1,26 @@
+{
+  "groups": [
+    { "n": 1, "pattern": "-ar",   "inf": "prata (to talk)", "present": "pratar", "past": "pratade", "sup": "pratat", "colorKey": "teal" },
+    { "n": 2, "pattern": "-er",   "inf": "köra (to drive)", "present": "kör",    "past": "körde",   "sup": "kört",   "colorKey": "gold" },
+    { "n": 3, "pattern": "-r",    "inf": "bo (to live)",    "present": "bor",    "past": "bodde",   "sup": "bott",   "colorKey": "sky" },
+    { "n": 4, "pattern": "irreg", "inf": "vara (to be)",    "present": "är",     "past": "var",     "sup": "varit",  "colorKey": "lavender" }
+  ],
+  "pronouns": [
+    ["jag",    "I"],
+    ["du",     "you (sing.)"],
+    ["han/hon","he/she"],
+    ["vi",     "we"],
+    ["ni",     "you (pl.)"],
+    ["de",     "they"]
+  ],
+  "irregulars": [
+    ["to be",   "vara",  "är",     "var",     "varit"],
+    ["to have", "ha",    "har",    "hade",    "haft"],
+    ["to go",   "gå",    "går",    "gick",    "gått"],
+    ["to come", "komma", "kommer", "kom",     "kommit"],
+    ["to see",  "se",    "ser",    "såg",     "sett"],
+    ["to say",  "säga",  "säger",  "sa(de)", "sagt"],
+    ["to get",  "få",    "får",    "fick",    "fått"],
+    ["to know", "veta",  "vet",    "visste",  "vetat"]
+  ]
+}

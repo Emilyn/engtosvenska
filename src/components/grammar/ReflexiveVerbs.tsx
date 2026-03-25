@@ -6,29 +6,10 @@ import { RuleBox } from "@/components/shared/RuleBox";
 import { Row } from "@/components/shared/Row";
 import { SpeakBtn } from "@/components/shared/SpeakBtn";
 
-const reflexPronouns: [string, string, string][] = [
-  ["jag","mig","I wash myself — jag tvättar mig"],
-  ["du","dig","you wash yourself — du tvättar dig"],
-  ["han/hon/den/det","sig","he/she washes — han tvättar sig"],
-  ["vi","oss","we wash — vi tvättar oss"],
-  ["ni","er","you (pl.) wash — ni tvättar er"],
-  ["de","sig","they wash — de tvättar sig"],
-];
+import reflexData from "@/data/grammar/reflexiveVerbs.json";
 
-const commonReflexive = [
-  { sv:"känna sig",  en:"to feel (emotionally)",  ex:[["Jag känner mig trött","I feel tired"],["Hon känner sig glad","She feels happy"]] },
-  { sv:"sätta sig",  en:"to sit down",             ex:[["Sätt dig!","Sit down!"],["Han satte sig ner","He sat down"]] },
-  { sv:"lägga sig",  en:"to lie down / go to bed", ex:[["Jag lägger mig nu","I'm going to bed now"],["Lägg dig!","Lie down!"]] },
-  { sv:"tvätta sig", en:"to wash oneself",          ex:[["Jag tvättar mig varje dag","I wash every day"],["Tvätta dig!","Wash yourself!"]] },
-  { sv:"klä på sig", en:"to get dressed",           ex:[["Han klär på sig","He gets dressed"],["Klä på dig!","Get dressed!"]] },
-  { sv:"klä av sig", en:"to get undressed",         ex:[["Hon klär av sig","She gets undressed"]] },
-  { sv:"skynda sig", en:"to hurry",                 ex:[["Skynda dig!","Hurry up!"],["Vi måste skynda oss","We have to hurry"]] },
-  { sv:"gifta sig",  en:"to get married",           ex:[["De gifte sig i somras","They got married last summer"]] },
-  { sv:"trivas",     en:"to feel at home / enjoy",  ex:[["Jag trivs här","I feel at home here"],["Trivs du i Stockholm?","Do you enjoy Stockholm?"]] },
-  { sv:"heta",       en:"to be called / named",     ex:[["Jag heter Anna","My name is Anna"],["Vad heter du?","What's your name?"]] },
-  { sv:"minnas",     en:"to remember",               ex:[["Jag minns inte","I don't remember"],["Minns du det?","Do you remember that?"]] },
-  { sv:"hoppas",     en:"to hope",                   ex:[["Jag hoppas det","I hope so"],["Vi hoppas på sol","We're hoping for sun"]] },
-];
+const reflexPronouns = reflexData.reflexPronouns as [string, string, string][];
+const commonReflexive = reflexData.commonReflexive;
 
 export function ReflexiveVerbs() {
   const { isMobile } = useBreakpoint();
@@ -82,29 +63,14 @@ export function ReflexiveVerbs() {
         <RuleBox colorClass={C.sage} bgClass={C.sageBg} borderClass={C.sageBorder}>
           A typical morning in Swedish — almost every step uses a reflexive verb!
         </RuleBox>
-        {[
-          ["Jag lägger mig klockan tio","I go to bed at ten","lägga sig"],
-          ["Jag vaknar och sätter mig upp","I wake up and sit up","sätta sig"],
-          ["Jag tvättar mig och rakar mig","I wash and shave","tvätta / raka sig"],
-          ["Jag klär på mig","I get dressed","klä på sig"],
-          ["Jag skyndar mig till jobbet","I hurry to work","skynda sig"],
-          ["Jag känner mig pigg","I feel alert","känna sig"],
-          ["Jag trivs på jobbet","I enjoy work","trivas"],
-        ].map(([sv, en, verb]) => <Row key={sv} sv={sv} en={en} note={verb} colorClass={C.sage} />)}
+        {(reflexData.dailyRoutine as [string,string,string][]).map(([sv, en, verb]) => <Row key={sv} sv={sv} en={en} note={verb} colorClass={C.sage} />)}
       </Section>
 
       <Section title="Deponent Verbs — Only Reflexive Form Exists">
         <RuleBox colorClass={C.rose} bgClass={C.roseBg} borderClass={C.roseBorder}>
           Some Swedish verbs <em>look</em> reflexive (end in <strong>-s</strong>) but have no non-reflexive form. They're called deponent verbs. You just have to learn them as-is.
         </RuleBox>
-        {[
-          ["hoppas","to hope","Jag hoppas det går bra", ""],
-          ["minnas","to remember","Minns du mig?", ""],
-          ["trivas","to feel at home","Hon trivs i Sverige", ""],
-          ["hetas / heta","to be named","Jag heter Erik", ""],
-          ["finnas","to exist / be found","Det finns mjölk","there is milk"],
-          ["verkas","to seem","Det verkar bra","it seems good"],
-        ].map(([sv, en, ex, exEn]) => (
+        {(reflexData.deponentVerbs as [string,string,string,string][]).map(([sv, en, ex, exEn]) => (
           <div key={sv} className="bg-muted/50 rounded-lg px-3.5 py-2.5 mb-2 flex gap-2.5 items-center flex-wrap">
             <SpeakBtn word={sv} small />
             <span className={cn("font-serif text-base min-w-[80px]", C.rose)}>{sv}</span>
