@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { C } from "@/lib/colors";
 import type { Theme } from "@/hooks/useTheme";
+import type { ReminderStatus } from "@/hooks/useDailyReminder";
 
 interface Tab {
   id: string;
@@ -19,11 +20,14 @@ interface AppMenuProps {
   tabs: Tab[];
   activeTab: string;
   onTabChange: (id: string) => void;
+  reminderStatus: ReminderStatus;
+  onToggleReminder: () => void;
 }
 
 export function AppMenu({
   open, onClose, theme, onToggleTheme,
   canInstall, onInstall, tabs, activeTab, onTabChange,
+  reminderStatus, onToggleReminder,
 }: AppMenuProps) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -127,6 +131,32 @@ export function AppMenu({
                 <div className="font-mono text-[13px] tracking-wide">Install app</div>
                 <div className="text-[10px] font-mono text-muted-foreground/70">Add to home screen</div>
               </div>
+            </button>
+          )}
+
+          {/* Daily reminder */}
+          {reminderStatus !== 'unsupported' && (
+            <button
+              onClick={onToggleReminder}
+              disabled={reminderStatus === 'denied'}
+              className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border border-transparent text-muted-foreground hover:text-foreground hover:bg-muted transition-colors text-left disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span className="text-xl w-7 text-center">
+                {reminderStatus === 'enabled' ? '🔔' : '🔕'}
+              </span>
+              <div className="flex-1 min-w-0">
+                <div className="font-mono text-[13px] tracking-wide">Daily reminder</div>
+                <div className="text-[10px] font-mono text-muted-foreground/70">
+                  {reminderStatus === 'enabled'
+                    ? 'Word of the day — tap to turn off'
+                    : reminderStatus === 'denied'
+                    ? 'Blocked — allow in browser settings'
+                    : 'Word of the day notification'}
+                </div>
+              </div>
+              {reminderStatus === 'enabled' && (
+                <span className={cn("shrink-0 font-mono text-[9px] px-1.5 py-0.5 rounded border", C.gold, C.goldBg, C.goldBorder)}>ON</span>
+              )}
             </button>
           )}
         </div>
