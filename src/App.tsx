@@ -4,6 +4,7 @@ import { C } from "@/lib/colors";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { usePWAInstall } from "@/hooks/usePWA";
 import { useTheme } from "@/hooks/useTheme";
+import { useDailyReminder } from "@/hooks/useDailyReminder";
 import { VOWELS } from "@/data/vowels";
 import { SubTabBar } from "@/components/shared/SubTabBar";
 import { AppMenu } from "@/components/shared/AppMenu";
@@ -60,6 +61,7 @@ export default function App() {
   const { isMobile } = useBreakpoint();
   const { canInstall, install, installed } = usePWAInstall();
   const { theme, toggleTheme } = useTheme();
+  const { status: reminderStatus, toggle: toggleReminder } = useDailyReminder();
 
   const GComp = GRAMMAR_TABS.find(t => t.id === grammarTab)?.Component;
   const CComp = CONTENT_TABS.find(t => t.id === contentTab)?.Component;
@@ -107,6 +109,8 @@ export default function App() {
         tabs={MAIN_TABS}
         activeTab={mainTab}
         onTabChange={setMainTab}
+        reminderStatus={reminderStatus}
+        onToggleReminder={toggleReminder}
       />
 
       {/* Content */}
